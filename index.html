@@ -339,10 +339,10 @@ footer{padding:60px 0 34px;border-top:1px solid var(--line);margin-top:clamp(70p
   const plans = [
     { id: 'p-vip', name: 'VIP', pkg: { 30: 'VIP 30 jours', 90: 'VIP 90 jours' }, sub: 'L\'essentiel pour bien démarrer en ville', price: { 30: '15,00 $', 90: '30,00 $' },
       icon: '<path fill="currentColor" d="m12 2 3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/>', btn: 'pri',
-      perks: ['750 $ en jeu toutes les 30 min connecté', '−20 % sur l\'essence', '−25 % sur la sortie de fourrière', 'Récolte x2', 'Pêche automatique en une touche', 'Poissons et gibiers rares x1,5', 'Tes véhicules sortis visibles sur la carte', 'Badge VIP'] },
+      perks: ['750 $ en jeu toutes les 30 min connecté', '−20 % sur l\'essence', '−25 % sur la sortie de fourrière', 'Récolte x2', 'Pêche automatique en une touche', 'Canne à pêche Gold : incassable, plus rapide, plus de poissons rares', 'Poissons et gibiers rares x1,5', 'Tes véhicules sortis visibles sur la carte', 'Badge VIP'] },
     { id: 'p-plus', name: 'VIP +', pkg: { 30: 'VIP + 30 jours', 90: 'VIP + 90 jours' }, sub: 'Le maximum, avec points de boutique offerts', price: { 30: '25,00 $', 90: '50,00 $' }, pop: true,
       icon: '<path fill="currentColor" d="M3 7.5 7.5 11 12 4l4.5 7L21 7.5 19 19H5z"/>', btn: 'gold',
-      perks: ['1 200 $ en jeu toutes les 30 min connecté', '1 point de boutique / 30 min (2 en 90 jours)', '−30 % sur l\'essence', '−50 % sur la sortie de fourrière', 'Récolte x4', 'Pêche automatique en une touche', 'Poissons et gibiers rares x2', 'Accès au grand écran TV', 'Badge VIP +'] },
+      perks: ['1 200 $ en jeu toutes les 30 min connecté', '1 point de boutique / 30 min (2 en 90 jours)', '−30 % sur l\'essence', '−50 % sur la sortie de fourrière', 'Récolte x4', 'Pêche automatique en une touche', 'Canne à pêche Gold : incassable, plus rapide, plus de poissons rares', 'Poissons et gibiers rares x2', 'Accès au grand écran TV', 'Badge VIP +'] },
   ];
   let dur = 30;
   const renderPlans = () => {
@@ -361,7 +361,7 @@ footer{padding:60px 0 34px;border-top:1px solid var(--line);margin-top:clamp(70p
     for (const o of document.querySelectorAll('.seg button')) o.setAttribute('aria-pressed', String(o === b));
     renderPlans();
   });
-  const cmp = [['Argent toutes les 30 min', '750 $', '1 200 $'], ['Points de boutique / 30 min', '—', '1 (2 en 90 j)'], ['Essence', '−20 %', '−30 %'], ['Fourrière', '−25 %', '−50 %'], ['Récolte', 'x2', 'x4'], ['Pêche automatique', 'Oui', 'Oui'], ['Rares (poissons, gibier)', 'x1,5', 'x2'], ['Véhicules sortis sur la carte', 'Oui', 'Oui'], ['Grand écran TV', '—', 'Oui'], ['Badge', 'VIP', 'VIP +']];
+  const cmp = [['Argent toutes les 30 min', '750 $', '1 200 $'], ['Points de boutique / 30 min', '—', '1 (2 en 90 j)'], ['Essence', '−20 %', '−30 %'], ['Fourrière', '−25 %', '−50 %'], ['Récolte', 'x2', 'x4'], ['Pêche automatique', 'Oui', 'Oui'], ['Canne à pêche Gold', 'Oui', 'Oui'], ['Rares (poissons, gibier)', 'x1,5', 'x2'], ['Véhicules sortis sur la carte', 'Oui', 'Oui'], ['Grand écran TV', '—', 'Oui'], ['Badge', 'VIP', 'VIP +']];
   const cell = (v, cls) => v === '—' ? '<span class="t-n">—</span>' : `<span class="${cls}">${v}</span>`;
   document.getElementById('cmp').innerHTML = cmp.map(r => `<tr><td>${r[0]}</td><td class="c">${cell(r[1], 't-v')}</td><td class="c">${cell(r[2], 't-g')}</td></tr>`).join('');
 
