@@ -377,7 +377,7 @@ footer{padding:60px 0 34px;border-top:1px solid var(--line);margin-top:clamp(70p
   const save = () => { try { localStorage.setItem('rc_basket', basket || ''); } catch (e) {} };
   try { basket = localStorage.getItem('rc_basket') || null; } catch (e) {}
   async function getBasket() {
-    if (basket) { try { return (await api('/baskets/' + basket)).data; } catch (e) { basket = null; } }
+    if (basket) { try { const d = (await api('/baskets/' + basket)).data; if (d && !d.complete) return d; } catch (e) {} basket = null; save(); }
     basket = (await api('/baskets', { method: 'POST', body: JSON.stringify({ complete_url: back + '#merci', cancel_url: back, complete_auto_redirect: true }) })).data.ident;
     save();
     return (await api('/baskets/' + basket)).data;
@@ -424,7 +424,8 @@ footer{padding:60px 0 34px;border-top:1px solid var(--line);margin-top:clamp(70p
   });
   // retour de la connexion FiveM : on reprend l'achat
   if (TEBEX_TOKEN && location.hash.startsWith('#buy-')) { const n = decodeURIComponent(location.hash.slice(5)); history.replaceState(null, '', location.pathname); buy(n).catch(() => toast('Le paiement n\'a pas pu s\'ouvrir.')); }
-  if (location.hash === '#merci') toast('Merci pour ton soutien ! Ton achat arrive en jeu dans quelques instants.');
+  if (location.hash === '#merci') { basket = null; save(); history.replaceState(null, '', location.pathname); toast('Merci pour ton soutien ! Ton achat arrive en jeu dans quelques instants.'); }
+  if (false) toast('Merci pour ton soutien ! Ton achat arrive en jeu dans quelques instants.');
 
   // ---- nav : fond au défilement + menu mobile
   const nav = document.getElementById('nav'), burger = document.getElementById('burger');
